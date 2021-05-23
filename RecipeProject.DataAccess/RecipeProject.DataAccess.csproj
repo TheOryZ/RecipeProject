@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RecipeProject.Core\RecipeProject.Core.csproj" />
+    <ProjectReference Include="..\RecipeProject.Entities\RecipeProject.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
