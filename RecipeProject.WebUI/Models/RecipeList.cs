@@ -10,6 +10,6 @@ namespace RecipeProject.WebUI.Models
         public string Slug { get; set; }
         public DateTime CreatedTime { get; set; }
         public string CategoryId { get; set; }
-        public CategoryList Category { get; set; }
+        public CategoryListModel Category { get; set; }
     }
 }
