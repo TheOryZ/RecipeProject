@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RecipeProject.Business.Containers.MicrosoftIoC;
+using RecipeProject.Business.Interfaces;
 using RecipeProject.Core.Settings;
 using RecipeProject.Core.StringInfos;
 using System;
@@ -60,7 +61,7 @@ namespace RecipeProject.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IAppUserService appUserService)
         {
             if (env.IsDevelopment())
             {
@@ -72,7 +73,7 @@ namespace RecipeProject.WebAPI
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            JwtIdentityInitializer.Seed(appUserService).Wait();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -12,6 +12,7 @@ namespace RecipeProject.DataAccess.Interfaces
         Task<List<AppUser>> GetAllAsync();
         Task<AppUser> FindByIdAsync(string id);
         Task<AppUser> FindByUserNameAsync(string userName);
+        Task<AppUser> FindByAdminAsync(string role);
         Task AddAsync(AppUser appUser);
         Task UpdateAsync(string id, AppUser appUser);
         Task RemoveAsync(string id);

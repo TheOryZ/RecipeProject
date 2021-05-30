@@ -25,6 +25,12 @@ namespace RecipeProject.DataAccess.Concrete.Repositories
             await _appUserCollection.InsertOneAsync(appUser);
         }
 
+        public async Task<AppUser> FindByAdminAsync(string role)
+        {
+            //Added for JwtIdentityInitializer.cs
+            return await _appUserCollection.Find(x => x.AppRole.RoleName == role).FirstOrDefaultAsync();
+        }
+
         public async Task<AppUser> FindByIdAsync(string id)
         {
             return await _appUserCollection.Find(x => x.Id == id).FirstOrDefaultAsync();

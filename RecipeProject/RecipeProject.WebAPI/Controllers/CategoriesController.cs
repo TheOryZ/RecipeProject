@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeProject.Business.Interfaces;
+using RecipeProject.Core.StringInfos;
 using RecipeProject.DTO.Dtos.CategoryDtos;
 using RecipeProject.Entities.Concrete;
 using RecipeProject.WebAPI.CustomFilters;
@@ -24,11 +26,13 @@ namespace RecipeProject.WebAPI.Controllers
             _categoryService = categoryService;
         }
         [HttpGet]
+        [Authorize(Roles = RoleInfos.Admin + "," + RoleInfos.Moderator)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(_mapper.Map<List<CategoryListDto>>(await _categoryService.GetAllAsync()));
         }
         [HttpGet("{id}")]
+        [Authorize(Roles = RoleInfos.Admin + "," + RoleInfos.Moderator)]
         public async Task<IActionResult> FindById(string id)
         {
             var category = await _categoryService.FindByIdAsync(id);
@@ -37,6 +41,7 @@ namespace RecipeProject.WebAPI.Controllers
             return BadRequest("Category not found");
         }
         [HttpPost]
+        [Authorize(Roles = RoleInfos.Admin)]
         [ValidModel]
         public async Task<IActionResult> Add(CategoryAddDto categoryAddDto)
         {
@@ -44,6 +49,7 @@ namespace RecipeProject.WebAPI.Controllers
             return Created("", categoryAddDto);
         }
         [HttpPut]
+        [Authorize(Roles = RoleInfos.Admin)]
         [ValidModel]
         public async Task<IActionResult> Update(string id, CategoryUpdateDto categoryUpdateDto)
         {
@@ -57,6 +63,7 @@ namespace RecipeProject.WebAPI.Controllers
 
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = RoleInfos.Admin)]
         public async Task<IActionResult> Remove(string id)
         {
             var category = await _categoryService.FindByIdAsync(id);

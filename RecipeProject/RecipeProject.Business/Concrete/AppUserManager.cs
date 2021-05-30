@@ -21,6 +21,13 @@ namespace RecipeProject.Business.Concrete
             await _appUserDal.AddAsync(appUser);
         }
 
+        public async Task<AppUser> FindByAdminAsync(string role)
+        {
+            //Added for JwtIdentityInitializer.cs
+            return await _appUserDal.FindByAdminAsync(role);
+
+        }
+
         public async Task<AppUser> FindByIdAsync(string id)
         {
             return await _appUserDal.FindByIdAsync(id);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeProject.Business.Interfaces;
+using RecipeProject.Core.StringInfos;
 using RecipeProject.DTO.Dtos.AppUserDtos;
 using RecipeProject.DTO.Dtos.Token;
 using RecipeProject.Entities.Concrete;
@@ -52,6 +53,7 @@ namespace RecipeProject.WebAPI.Controllers
         }
 
         [HttpPost("[action]")]
+        [Authorize(Roles = RoleInfos.Admin)]
         [ValidModel]
         public async Task<IActionResult> SignUp(AppUserAddDto appUserAddDto)
         {

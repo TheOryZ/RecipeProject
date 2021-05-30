@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecipeProject.Business.Interfaces;
+using RecipeProject.Core.StringInfos;
 using RecipeProject.DTO.Dtos.RecipeDtos;
 using RecipeProject.Entities.Concrete;
 using RecipeProject.WebAPI.CustomFilters;
@@ -25,11 +27,13 @@ namespace RecipeProject.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = RoleInfos.Admin + "," + RoleInfos.Moderator)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(_mapper.Map<List<RecipeListDto>>(await _recipeService.GetAllAsync()));
         }
         [HttpGet("{id}")]
+        [Authorize(Roles = RoleInfos.Admin + "," + RoleInfos.Moderator)]
         public async Task<IActionResult> FindById(string id)
         {
             var recipe = await _recipeService.FindByIdAsync(id);
@@ -38,6 +42,7 @@ namespace RecipeProject.WebAPI.Controllers
             return BadRequest("Recipe not found");
         }
         [HttpPost]
+        [Authorize(Roles = RoleInfos.Moderator)]
         [ValidModel]
         public async Task<IActionResult> Add(RecipeAddDto recipeAddDto)
         {
@@ -45,6 +50,7 @@ namespace RecipeProject.WebAPI.Controllers
             return Created("", recipeAddDto);
         }
         [HttpPut]
+        [Authorize(Roles = RoleInfos.Moderator)]
         [ValidModel]
         public async Task<IActionResult> Update(string id, RecipeUpdateDto recipeUpdateDto)
         {
@@ -58,6 +64,7 @@ namespace RecipeProject.WebAPI.Controllers
                 
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = RoleInfos.Moderator)]
         public async Task<IActionResult> Remove(string id)
         {
             var recipe = await _recipeService.FindByIdAsync(id);
