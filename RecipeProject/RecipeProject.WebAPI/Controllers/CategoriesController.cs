@@ -26,13 +26,11 @@ namespace RecipeProject.WebAPI.Controllers
             _categoryService = categoryService;
         }
         [HttpGet]
-        [Authorize(Roles = RoleInfos.Admin + "," + RoleInfos.Moderator)]
         public async Task<IActionResult> GetAll()
         {
             return Ok(_mapper.Map<List<CategoryListDto>>(await _categoryService.GetAllAsync()));
         }
         [HttpGet("{id}")]
-        [Authorize(Roles = RoleInfos.Admin + "," + RoleInfos.Moderator)]
         public async Task<IActionResult> FindById(string id)
         {
             var category = await _categoryService.FindByIdAsync(id);

@@ -15,5 +15,10 @@ namespace RecipeProject.WebUI.Controllers
         {
             return View(await _recipeApiService.GetAllAsync());
         }
+
+        public async Task<IActionResult> RecipeDetail(string id)
+        {
+            return View(await _recipeApiService.GetByIdAsync(id));
+        }
     }
 }
