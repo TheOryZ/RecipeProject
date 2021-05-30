@@ -14,7 +14,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 wow fadeIn">
             <div class="recipe-item text-center">
                 <a asp-action="RecipeDetail" asp-controller="Home" asp-route-id="@item.Id">
-                <img src="~/templates/recipe-book-html-template-master/recipe-book-html-template-master/images/bbq-pork-ribs.jpg" alt="bbq-pork-ribs" /> <!--item.Image -->
+                <img src="~/images/@item.Image" alt="bbq-pork-ribs" /> <!--item.Image -->
                 </a>
                 <br />
                 <h3>@item.Title</h3>
