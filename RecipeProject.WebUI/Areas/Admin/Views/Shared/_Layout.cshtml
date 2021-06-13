@@ -35,16 +35,16 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
+          <a asp-action="Index" asp-controller="Home" asp-area="Admin" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Categories</a>
+          <a asp-action="Index" asp-controller="Category" asp-area="Admin" class="nav-link">Categories</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Recipes</a>
+          <a asp-action="Index" asp-controller="Recipe" asp-area="Admin" class="nav-link">Recipes</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Moderators</a>
+          <a asp-action="Index" asp-controller="Moderator" asp-area="Admin" class="nav-link">Moderators</a>
         </li>
       </ul>
 
@@ -121,7 +121,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-header">EXAMPLES</li>
             <li class="nav-item">
-              <a href="pages/gallery.html" class="nav-link">
+              <a asp-action="Index" asp-controller="Category" asp-area="Admin" class="nav-link">
                 <i class="fab fa-buromobelexperte"></i>
                 <p>
                   Categories
@@ -129,7 +129,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/gallery.html" class="nav-link">
+              <a asp-action="Index" asp-controller="Recipe" asp-area="Admin" class="nav-link">
                 <i class="fas fa-utensils"></i>
                 <p>
                   Recipes
@@ -137,7 +137,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/gallery.html" class="nav-link">
+              <a asp-action="Index" asp-controller="Moderator" asp-area="Admin" class="nav-link">
                 <i class="fas fa-feather-alt"></i>
                 <p>
                   Moderators

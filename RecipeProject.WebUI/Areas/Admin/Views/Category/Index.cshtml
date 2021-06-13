@@ -1,0 +1,42 @@
+@model List<CategoryListModel>
+@{
+    int count = 1;
+}
+<div>
+    <a asp-action="Create" asp-controller="Category" asp-area="Admin" class="btn btn-outline-info bt-sm my-2">Add New
+        Category</a>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Categories List</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Category</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Name</td>
+                            <td>
+                                <a asp-action="Update" asp-controller="Category" asp-area="Admin" asp-route-id="@item.Id"
+                                class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-action="Delete" asp-controller="Category" asp-area="Admin" asp-route-id="@item.Id"
+                                class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        count++;
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>
